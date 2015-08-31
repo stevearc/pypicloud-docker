@@ -8,12 +8,12 @@ working, run this command:
 docker run -it --rm -p 8080:8080 stevearc/pypicloud
 ```
 
-This will start pypicloud with default settings inside the docker container.
-You can visit the site by going to http://localhost:8080. The default settings
-are sufficient to play with, but they should not be used in production.
+This will start pypicloud with default settings inside the docker container and
+serve it on port 8080. The default settings are sufficient to play with, but
+they should not be used in production.
 
 You can access the `pypicloud-make-config` command from the docker image, which
-will give you a decent starting template customized for your use.
+will give you a decent starting config that you can customize for your use.
 
 ```
 docker run -it --rm stevearc/pypicloud make-config
