@@ -6,11 +6,11 @@ CMD ["/sbin/my_init"]
 
 # Install packages required
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update -qq
-RUN apt-get install -y python-pip python2.7-dev libldap2-dev libsasl2-dev
-RUN pip install virtualenv
+RUN apt-get update -qq \
+  && apt-get install -y python-pip python2.7-dev libldap2-dev libsasl2-dev \
+  && pip install virtualenv
 RUN virtualenv /env
-RUN /env/bin/pip install pypicloud[ldap,dynamo]==0.3.6 uwsgi pastescript redis
+RUN /env/bin/pip install pypicloud[ldap,dynamo]==0.3.6 requests uwsgi pastescript redis
 
 # Add the startup service
 RUN mkdir -p /etc/my_init.d
