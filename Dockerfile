@@ -26,3 +26,5 @@ VOLUME /var/lib/pypicloud
 
 # Add the command for easily creating config files
 ADD make-config.sh /sbin/make-config
+
+EXPOSE 8080
