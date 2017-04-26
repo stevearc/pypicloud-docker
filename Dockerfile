@@ -8,10 +8,10 @@ CMD ["/sbin/my_init"]
 ENV DEBIAN_FRONTEND noninteractive
 ENV PYPICLOUD_VERSION 0.5.2
 RUN apt-get update -qq \
-  && apt-get install -y python-pip python2.7-dev libldap2-dev libsasl2-dev \
+  && apt-get install -y python-pip python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev \
   && pip install virtualenv
 RUN virtualenv /env
-RUN /env/bin/pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis
+RUN /env/bin/pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis mysql-python
 
 # Add the startup service
 RUN mkdir -p /etc/my_init.d
