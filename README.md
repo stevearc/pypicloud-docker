@@ -23,8 +23,8 @@ The config file in the container is located at `/etc/pypicloud/config.ini`. To
 use your own config file, mount it as a volume.
 
 ```
-docker run -p 8080:8080
-    -v /path/to/my/config.ini:/etc/pypicloud/config.ini:ro
+docker run -p 8080:8080 \
+    -v /path/to/my/config.ini:/etc/pypicloud/config.ini:ro \
     stevearc/pypicloud
 ```
 
