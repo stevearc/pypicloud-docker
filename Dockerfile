@@ -6,7 +6,7 @@ CMD ["/sbin/my_init"]
 
 # Install packages required
 ENV DEBIAN_FRONTEND noninteractive
-ENV PYPICLOUD_VERSION 0.5.3
+ENV PYPICLOUD_VERSION 0.5.4
 RUN apt-get update -qq \
   && apt-get install -y python-pip python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev \
   && pip install virtualenv
