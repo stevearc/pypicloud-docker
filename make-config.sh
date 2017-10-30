@@ -1,2 +1,6 @@
 #!/bin/sh
-/env/bin/ppc-make-config ${1--r}
+if [ -z "$1" ]; then
+  /env/bin/ppc-make-config -r
+else
+  /env/bin/ppc-make-config "$@"
+fi

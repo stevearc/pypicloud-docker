@@ -19,6 +19,13 @@ will give you a decent starting config that you can customize for your use.
 docker run -it --rm stevearc/pypicloud make-config
 ```
 
+This prints the config to stdout. If you want it to output a file, you can mount
+the working directory and provide an output file.
+
+```
+docker run -it --rm -v $(pwd):/out stevearc/pypicloud make-config -r /out/config.ini
+```
+
 The config file in the container is located at `/etc/pypicloud/config.ini`. To
 use your own config file, mount it as a volume.
 
