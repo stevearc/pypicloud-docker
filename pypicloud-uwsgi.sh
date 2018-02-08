@@ -1,2 +1,2 @@
 #!/bin/sh
-/env/bin/uwsgi --die-on-term /etc/pypicloud/config.ini
+/sbin/setuser pypicloud /env/bin/uwsgi --die-on-term /etc/pypicloud/config.ini
