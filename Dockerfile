@@ -2,7 +2,7 @@ FROM phusion/baseimage:0.9.17
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
 # Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+CMD ["/env/bin/uwsgi", "/etc/pypicloud/config.ini"]
 
 # Install packages required
 ENV DEBIAN_FRONTEND noninteractive
