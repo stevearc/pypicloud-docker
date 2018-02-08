@@ -21,8 +21,11 @@ ADD pypicloud-uwsgi.sh /etc/my_init.d/pypicloud-uwsgi.sh
 RUN mkdir -p /etc/pypicloud
 ADD config.ini /etc/pypicloud/config.ini
 
+# Add user to run pypicloud
+RUN groupadd -r pypicloud && useradd -r -g pypicloud pypicloud
+
 # Create a working directory for pypicloud
-RUN mkdir -p /var/lib/pypicloud
+RUN mkdir -p /var/lib/pypicloud && chown -R pypicloud:pypicloud /var/lib/pypicloud
 VOLUME /var/lib/pypicloud
 
 # Add the command for easily creating config files
