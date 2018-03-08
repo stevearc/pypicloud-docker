@@ -18,6 +18,9 @@ pipeline {
             }
         }
         stage('Build Image') {
+            environment {
+                BRANCH_NAME = 'master'
+            }
             steps {
                 buildImage(ProjectName:ProjectName,repoUri:repoUri)
             }
