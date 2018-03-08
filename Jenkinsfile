@@ -3,7 +3,7 @@
 @Library('aaptivPipelineLib') _
 
 /* Multipurpose vars defined here */
-def ProjectName = 'pypiserver'
+def ProjectName = 'pypi'
 
 pipeline {
     agent {
