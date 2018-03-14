@@ -1,31 +1,22 @@
-FROM phusion/baseimage:0.9.17
+FROM python:3.6-alpine3.7
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
-
-# Install packages required
-ENV DEBIAN_FRONTEND noninteractive
-ENV PYPICLOUD_VERSION 1.0.2
-RUN apt-get update -qq \
-  && apt-get install -y python-pip python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev \
-  && pip install virtualenv
-RUN virtualenv /env
-RUN /env/bin/pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis mysql-python psycopg2
-
-# Add the startup service
-RUN mkdir -p /etc/my_init.d
-ADD pypicloud-uwsgi.sh /etc/my_init.d/pypicloud-uwsgi.sh
-
-# Add the pypicloud config file
-RUN mkdir -p /etc/pypicloud
-ADD config.ini /etc/pypicloud/config.ini
-
-# Create a working directory for pypicloud
-RUN mkdir -p /var/lib/pypicloud
-VOLUME /var/lib/pypicloud
+EXPOSE 8080
+WORKDIR /app/
 
 # Add the command for easily creating config files
-ADD make-config.sh /sbin/make-config
+ADD config.ini /app/config.ini
+ADD make-config.sh /app/make-config
 
-EXPOSE 8080
+# Install packages required
+ENV PYPICLOUD_VERSION 1.0.2
+RUN apk add --no-cache --virtual build-deps python3-dev mariadb-dev postgresql-dev build-base linux-headers openldap-dev && \
+  pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis mysqlclient psycopg2 && \
+  adduser -D -s /bin/bash -h /var/lib/pypicloud/ pypicloud && \
+  apk del --no-cache build-deps && \
+  apk add --no-cache libldap libpq mariadb-libs util-linux-dev
+
+# Create a working directory for pypicloud
+VOLUME /var/lib/pypicloud
+
+CMD ["uwsgi", "--die-on-term", "/app/config.ini"]
