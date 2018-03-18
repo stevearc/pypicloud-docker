@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -z "$1" ]; then
-  /env/bin/ppc-make-config -r
+  ppc-make-config -r
 else
-  /env/bin/ppc-make-config "$@"
+  ppc-make-config "$@"
 fi
