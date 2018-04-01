@@ -1,0 +1,14 @@
+version: '3'
+services:
+  pypicloud:
+    command: sh -c '/wait-for redis:6379 -- uwsgi --die-on-term /etc/pypicloud/config.ini'
+    depends_on:
+      - redis
+    image: stevearc/pypicloud
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config-redis.ini:/etc/pypicloud/config.ini:ro
+      - ./wait-for:/wait-for:ro
+  redis:
+    image: redis
