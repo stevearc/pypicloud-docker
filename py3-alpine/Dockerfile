@@ -10,7 +10,7 @@ RUN apk add --no-cache --virtual build-deps python3-dev mariadb-dev postgresql-d
   pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis mysqlclient psycopg2 && \
   adduser -D -s /bin/bash -h /var/lib/pypicloud/ pypicloud && \
   apk del --no-cache build-deps && \
-  apk add --no-cache libldap libpq mariadb-libs util-linux-dev && \
+  apk add --no-cache libldap libpq mariadb-client-libs util-linux-dev && \
   mkdir -p /etc/pypicloud
 
 # Add the command for easily creating config files
