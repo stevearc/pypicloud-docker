@@ -10,7 +10,7 @@ RUN apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy python3-pip \
      python3-dev libldap2-dev libsasl2-dev libmysqlclient-dev \
   && pip3 install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi \
-     pastescript redis mysqlclient psycopg2 \
+     pastescript redis mysqlclient psycopg2-binary \
   # Create the pypicloud user
   && groupadd -r pypicloud \
   && useradd -r -g pypicloud -d /var/lib/pypicloud -m pypicloud \
