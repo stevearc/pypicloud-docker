@@ -38,3 +38,8 @@ docker run -p 8080:8080 \
 See the [list of configuration
 options](http://pypicloud.readthedocs.org/en/latest/topics/configuration.html)
 for details about the config file.
+
+## Compose
+
+If you want to use pypicloud with Docker Compose, you can find some starter
+examples at https://github.com/stevearc/pypicloud-docker/tree/master/compose

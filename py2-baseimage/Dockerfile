@@ -1,16 +1,16 @@
 FROM phusion/baseimage:0.10.0
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
-ENV PYPICLOUD_VERSION 1.0.5
+ENV PYPICLOUD_VERSION 1.0.6
 
 EXPOSE 8080
 
 # Install packages required
 RUN apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy python-pip \
-     python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev \
+     python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev libffi-dev libssl-dev \
   && pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi \
-     pastescript redis mysqlclient psycopg2 \
+     pastescript redis mysqlclient psycopg2-binary \
   # Create the pypicloud user
   && groupadd -r pypicloud \
   && useradd -r -g pypicloud -d /var/lib/pypicloud -m pypicloud \
