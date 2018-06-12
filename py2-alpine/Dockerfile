@@ -5,7 +5,7 @@ EXPOSE 8080
 WORKDIR /app/
 
 # Install packages required
-ENV PYPICLOUD_VERSION 1.0.5
+ENV PYPICLOUD_VERSION 1.0.6
 RUN apk add --no-cache --virtual build-deps python2-dev mariadb-dev postgresql-dev build-base linux-headers openldap-dev && \
   pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis mysqlclient psycopg2-binary && \
   adduser -D -s /bin/sh -h /var/lib/pypicloud/ pypicloud && \
