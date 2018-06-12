@@ -8,7 +8,7 @@ EXPOSE 8080
 # Install packages required
 RUN apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy python-pip \
-     python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev \
+     python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev libffi-dev libssl-dev \
   && pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi \
      pastescript redis mysqlclient psycopg2-binary \
   # Create the pypicloud user
