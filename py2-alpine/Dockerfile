@@ -20,4 +20,7 @@ ADD make-config.sh /usr/local/bin/make-config
 # Create a working directory for pypicloud
 VOLUME /var/lib/pypicloud
 
+# Run as pypicloud user
+USER pypicloud
+
 CMD ["uwsgi", "--die-on-term", "/etc/pypicloud/config.ini"]
