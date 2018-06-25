@@ -30,5 +30,9 @@ VOLUME /var/lib/pypicloud
 # Add the command for easily creating config files
 ADD make-config.sh /usr/local/bin/make-config
 
+# Add an environment variable that pypicloud-uwsgi.sh uses to determine which
+# user to run as
+ENV UWSGI_USER pypicloud
+
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
