@@ -1,7 +1,7 @@
 FROM phusion/baseimage:0.10.0
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
-ENV PYPICLOUD_VERSION 1.0.6
+ENV PYPICLOUD_VERSION 1.0.7
 
 EXPOSE 8080
 
@@ -29,6 +29,10 @@ VOLUME /var/lib/pypicloud
 
 # Add the command for easily creating config files
 ADD make-config.sh /usr/local/bin/make-config
+
+# Add an environment variable that pypicloud-uwsgi.sh uses to determine which
+# user to run as
+ENV UWSGI_USER pypicloud
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
