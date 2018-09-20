@@ -17,8 +17,9 @@ RUN apt-get update -qq \
   # Make sure this directory exists for the baseimage init
   && mkdir -p /etc/my_init.d
 
-# Add the startup service
+# Add the startup service and make it executable
 ADD pypicloud-uwsgi.sh /etc/my_init.d/pypicloud-uwsgi.sh
+RUN chmod +x /etc/my_init.d/pypicloud-uwsgi.sh
 
 # Add the pypicloud config file
 RUN mkdir -p /etc/pypicloud
