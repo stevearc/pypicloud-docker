@@ -9,6 +9,16 @@ pipeline {
     agent {
         label 'build1'
     }
+    options {
+        buildDiscarder(
+            logRotator(
+                artifactDaysToKeepStr: '',
+                artifactNumToKeepStr: '',
+                daysToKeepStr: '30',
+                numToKeepStr: '',
+                )
+        )
+    }
     stages {
         stage('Get ECR Repo URI') {
             steps {
