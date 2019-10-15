@@ -11,7 +11,7 @@ RUN apt-get update -qq \
   && apt-get install -y python-pip python2.7-dev libldap2-dev libsasl2-dev libmysqlclient-dev \
   && pip install virtualenv
 RUN virtualenv /env
-RUN /env/bin/pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis mysql-python psycopg2
+RUN /env/bin/pip install pypicloud[ldap,dynamo]==$PYPICLOUD_VERSION requests uwsgi pastescript redis mysql-python psycopg2-binary
 
 # Add the startup service
 RUN mkdir -p /etc/my_init.d
