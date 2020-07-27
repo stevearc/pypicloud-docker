@@ -3,7 +3,10 @@ set -e
 
 # Helper for building the images locally
 
-branch="$(git branch --no-color | grep \* | cut -d ' ' -f2)"
+branch="$1"
+if [ -z "$branch" ]; then
+  branch="$(git branch --no-color | grep \* | cut -d ' ' -f2)"
+fi
 ./cp-static.sh
 
 for base in alpine baseimage; do
