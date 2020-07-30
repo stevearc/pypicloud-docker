@@ -11,6 +11,6 @@ fi
 
 for base in alpine baseimage; do
   cd "py3-$base"
-  docker build . -t "stevearc/pypicloud:$branch-py3-$base" -t "stevearc/pypicloud:local-py3-$base"
+  docker build . -t "stevearc/pypicloud:$branch-$base" -t "stevearc/pypicloud:local-$base"
   cd ..
 done
