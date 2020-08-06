@@ -10,7 +10,7 @@ RUN apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy python3-pip \
      python3-dev libldap2-dev libsasl2-dev libmysqlclient-dev libffi-dev libssl-dev bcrypt \
   && pip3 install pypicloud[all_plugins]==$PYPICLOUD_VERSION requests uwsgi \
-     pastescript mysqlclient psycopg2-binary \
+     pastescript mysqlclient psycopg2-binary bcrypt \
   # Create the pypicloud user
   && groupadd -r pypicloud \
   && useradd -r -g pypicloud -d /var/lib/pypicloud -m pypicloud \
