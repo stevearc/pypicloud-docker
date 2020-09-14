@@ -1,7 +1,7 @@
 FROM phusion/baseimage:0.10.0
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
-ENV PYPICLOUD_VERSION 1.1.3
+ENV PYPICLOUD_VERSION 1.1.4
 
 EXPOSE 8080
 
