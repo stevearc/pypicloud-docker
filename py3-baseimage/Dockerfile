@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.10.0
+FROM phusion/baseimage:bionic-1.0.0
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
 ENV PYPICLOUD_VERSION 1.1.7
