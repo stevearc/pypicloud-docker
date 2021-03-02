@@ -1,7 +1,7 @@
 FROM phusion/baseimage:bionic-1.0.0
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
-ENV PYPICLOUD_VERSION 1.1.7
+ENV PYPICLOUD_VERSION 1.2.0
 
 EXPOSE 8080
 
