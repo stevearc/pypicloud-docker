@@ -1,4 +1,4 @@
-FROM phusion/baseimage:bionic-1.0.0
+FROM phusion/baseimage:focal-1.1.0
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
 ENV PYPICLOUD_VERSION 1.2.4
@@ -8,11 +8,11 @@ EXPOSE 8080
 # Install packages required
 RUN apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy python3-pip \
-     python3-dev libldap2-dev libsasl2-dev libmysqlclient-dev libffi-dev libssl-dev bcrypt \
-  && python3 -m pip install --upgrade pip \
-  && python3 -m pip install --upgrade setuptools \
-  && python3 -m pip install pypicloud[all_plugins]==$PYPICLOUD_VERSION requests uwsgi \
-     pastescript mysqlclient psycopg2-binary bcrypt \
+     python3-dev libldap2-dev libsasl2-dev libmysqlclient-dev libffi-dev libssl-dev apache2-utils \
+  && python3 -m pip install --no-cache-dir --upgrade pip \
+  && python3 -m pip install --no-cache-dir --upgrade setuptools \
+  && python3 -m pip install --no-cache-dir pypicloud[all_plugins]==$PYPICLOUD_VERSION \
+    requests uwsgi pastescript mysqlclient psycopg2-binary bcrypt \
   # Create the pypicloud user
   && groupadd -r pypicloud \
   && useradd -r -g pypicloud -d /var/lib/pypicloud -m pypicloud \
