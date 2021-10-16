@@ -15,3 +15,4 @@ services:
     environment:
       POSTGRES_PASSWORD:
       POSTGRES_DB: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
