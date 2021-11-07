@@ -15,9 +15,16 @@ if [ "$1" == '--publish' ]; then
     echo "Repo is not clean. Refusing to publish."
     exit 1
   fi
-  git describe --tags --exact-match
+  echo "Running tests"
+  ./test.sh latest
+  ./test.sh latest-alpine
+  echo "Tests passed"
   docker push "stevearc/pypicloud:latest"
-  docker push "stevearc/pypicloud:$tag"
   docker push "stevearc/pypicloud:latest-alpine"
-  docker push "stevearc/pypicloud:$tag-alpine"
+  if git describe --tags --exact-match; then
+    docker push "stevearc/pypicloud:$tag"
+    docker push "stevearc/pypicloud:$tag-alpine"
+  else
+    echo "Not pushing $tag because it is not an exact version"
+  fi
 fi
