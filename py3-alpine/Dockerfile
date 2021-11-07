@@ -6,8 +6,8 @@ WORKDIR /app/
 
 # Install packages required
 ENV PYPICLOUD_VERSION 1.3.2
-RUN apk add --no-cache --virtual build-deps python3-dev mariadb-dev postgresql-dev build-base linux-headers openldap-dev autoconf automake g++ make libffi-dev libressl-dev musl-dev cargo && \
-  apk add --no-cache libldap libpq mariadb-connector-c-dev mariadb-connector-c util-linux-dev && \
+RUN apk add --no-cache --virtual build-deps python3-dev mariadb-dev postgresql-dev build-base linux-headers openldap-dev autoconf automake make libffi-dev libressl-dev musl-dev cargo && \
+  apk add --no-cache libldap libpq mariadb-connector-c-dev mariadb-connector-c util-linux-dev g++ && \
   python -m pip install --no-cache-dir --upgrade pip setuptools && \
   python -m pip install --no-cache-dir pypicloud[all_plugins]==$PYPICLOUD_VERSION \
     requests uwsgi pastescript mysqlclient psycopg2-binary bcrypt cryptography \
