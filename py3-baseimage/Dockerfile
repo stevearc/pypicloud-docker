@@ -1,7 +1,7 @@
 FROM phusion/baseimage:focal-1.1.0
 MAINTAINER Steven Arcangeli <stevearc@stevearc.com>
 
-ENV PYPICLOUD_VERSION 1.3.2
+ENV PYPICLOUD_VERSION 1.3.3
 
 EXPOSE 8080
 
