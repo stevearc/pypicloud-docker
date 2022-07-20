@@ -17,4 +17,4 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - run: bash build.sh
+      - run: bash build.sh --publish
