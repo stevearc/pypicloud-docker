@@ -3,10 +3,12 @@ set -e -o pipefail
 
 ./cp-static.sh
 tag=$(git describe --tags)
-echo "Building $tag"
+platforms=${BUILDX_PLATFORMS:-linux/amd64}
+alias buildx_build="docker buildx build --platform=${platforms}"
+echo "Building ${tag} for platforms ${platforms}"
 
-docker build --pull py3-baseimage -t "stevearc/pypicloud:latest" -t "stevearc/pypicloud:$tag"
-docker build --pull py3-alpine -t "stevearc/pypicloud:latest-alpine" -t "stevearc/pypicloud:$tag-alpine"
+buildx_build --pull py3-baseimage -t "stevearc/pypicloud:latest"
+buildx_build --pull py3-alpine -t "stevearc/pypicloud:latest-alpine"
 
 if [ "$1" == '--publish' ]; then
   if [ -n "$(git status --porcelain)" ]; then
@@ -19,11 +21,11 @@ if [ "$1" == '--publish' ]; then
   ./test.sh latest
   ./test.sh latest-alpine
   echo "Tests passed"
-  docker push "stevearc/pypicloud:latest"
-  docker push "stevearc/pypicloud:latest-alpine"
+  buildx_build --push py3-baseimage -t "stevearc/pypicloud:latest"
+  buildx_build --push py3-alpine -t "stevearc/pypicloud:latest-alpine"
   if git describe --tags --exact-match; then
-    docker push "stevearc/pypicloud:$tag"
-    docker push "stevearc/pypicloud:$tag-alpine"
+    buildx_build --push py3-baseimage -t "stevearc/pypicloud:$tag"
+    buildx_build --push py3-alpine -t "stevearc/pypicloud:$tag-alpine"
   else
     echo "Not pushing $tag because it is not an exact version"
   fi
