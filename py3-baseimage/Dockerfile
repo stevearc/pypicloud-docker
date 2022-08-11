@@ -9,6 +9,7 @@ EXPOSE 8080
 RUN apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy python3-pip \
      python3-dev libldap2-dev libsasl2-dev libmysqlclient-dev libffi-dev libssl-dev apache2-utils \
+     cargo \
   && python3 -m pip install --no-cache-dir --upgrade pip \
   && python3 -m pip install --no-cache-dir --upgrade setuptools \
   && python3 -m pip install --no-cache-dir pypicloud[all_plugins]==$PYPICLOUD_VERSION \
