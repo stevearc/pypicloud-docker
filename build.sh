@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e -o pipefail
+shopt -s expand_aliases
 
 ./cp-static.sh
 tag=$(git describe --tags)
