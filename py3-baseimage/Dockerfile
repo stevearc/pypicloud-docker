@@ -6,7 +6,8 @@ ENV PYPICLOUD_VERSION 1.3.9
 EXPOSE 8080
 
 # Install packages required
-RUN apt-get update -qq \
+RUN --mount=type=tmpfs,target=/root/.cargo \
+  apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -qy python3-pip \
      python3-dev libldap2-dev libsasl2-dev libmysqlclient-dev libffi-dev libssl-dev apache2-utils \
      cargo libpq-dev \
