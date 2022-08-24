@@ -9,7 +9,7 @@ cleanup() {
 trap cleanup SIGINT SIGTERM EXIT
 
 docker rm -f "$CONTAINER" >/dev/null 2>&1 || true
-docker run -d --name "$CONTAINER" -P "stevearc/pypicloud:$tag"
+docker run --pull never -d --name "$CONTAINER" -P "stevearc/pypicloud:$tag"
 sleep 5
 
 port=$(docker inspect "$CONTAINER" | jq -r '.[0].NetworkSettings.Ports["8080/tcp"][0].HostPort')

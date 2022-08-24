@@ -2,13 +2,18 @@ name: CI
 on:
   release:
     types: [released, prereleased]
-  workflow_dispatch:  # allow manually running from the Actions tab
+  workflow_dispatch: # allow manually running from the Actions tab
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      BUILDX_PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
+    strategy:
+      matrix:
+        include:
+          - image: baseimage
+            platform: linux/amd64,linux/arm64
+          - image: alpine
+            platform: linux/amd64
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-qemu-action@v1
@@ -17,4 +22,4 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - run: bash build.sh --publish
+      - run: bash build.sh --publish -i ${{matrix.image}} -p ${{matrix.platform}}
