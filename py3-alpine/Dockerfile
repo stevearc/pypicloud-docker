@@ -5,7 +5,7 @@ EXPOSE 8080
 WORKDIR /app/
 
 # Install packages required
-ENV PYPICLOUD_VERSION 1.3.9
+ENV PYPICLOUD_VERSION 1.3.10
 ENV CARGO_NET_GIT_FETCH_WITH_CLI true
 RUN --mount=type=tmpfs,target=/root/.cargo \
   apk add --no-cache --virtual build-deps python3-dev mariadb-dev postgresql-dev build-base \
